@@ -33,6 +33,7 @@ RUN \
         curl \
         jo \
         jq \
+        lib-usb-1.0-0 \
         nano \
         tzdata \
         uuid-runtime \
