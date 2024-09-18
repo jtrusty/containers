@@ -1,4 +1,4 @@
-name: Check Issues
+name: check issues
 
 on:
   issues:

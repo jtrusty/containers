@@ -25,8 +25,6 @@ jobs:
     uses: jtrusty/containers/.github/workflows/get-changed-images.yaml@main
 
   build-images:
-    permissions:
-      packages: write
     needs: ["simple-checks", "get-changed-images"]
     if: ${{ needs.get-changed-images.outputs.addedOrModified == 'true' }}
     uses: jtrusty/containers/.github/workflows/build-images.yaml@main
@@ -34,6 +32,7 @@ jobs:
     with:
       appsToBuild: "${{ needs.get-changed-images.outputs.addedOrModifiedImages }}"
       pushImages: true
+      sendNotifications: true
 
   render-readme:
     name: Render Readme
