@@ -13,12 +13,9 @@ RUN \
         bash \
         ca-certificates \
         catatonit \
-        postgresql16-client~"${VERSION}" \
-        && chmod +x /usr/bin/catatonit
-        
+        postgresql16-client~"${VERSION}"
 
 COPY ./apps/postgres-init/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/usr/bin/catatonit", "--"]
 CMD ["/entrypoint.sh"]
