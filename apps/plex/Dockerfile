@@ -33,7 +33,6 @@ RUN \
         curl \
         jo \
         jq \
-        libusb \
         nano \
         tzdata \
         uuid-runtime \
