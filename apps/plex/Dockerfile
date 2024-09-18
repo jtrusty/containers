@@ -13,10 +13,10 @@ ENV NVIDIA_DRIVER_CAPABILITIES="compute,video,utility" \
     PLEX_MEDIA_SERVER_HOME="/usr/lib/plexmediaserver" \
     PLEX_MEDIA_SERVER_MAX_PLUGIN_PROCS="6" \
     PLEX_MEDIA_SERVER_INFO_VENDOR="Docker" \
-    PLEX_MEDIA_SERVER_INFO_DEVICE="Docker Container (jtrusty)"
+    PLEX_MEDIA_SERVER_INFO_DEVICE="Docker Container (onedr0p)"
 
 ENV UMASK="0002" \
-    TZ="Cst/UTC"
+    TZ="Etc/UTC"
 
 USER root
 WORKDIR /app
@@ -41,6 +41,9 @@ RUN \
     case "${TARGETPLATFORM}" in \
         'linux/amd64') \
             export ARCH='amd64'; \
+        ;; \
+        'linux/arm64') \
+            export ARCH='arm64'; \
         ;; \
     esac \
     && \
