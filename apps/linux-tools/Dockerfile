@@ -12,7 +12,7 @@ WORKDIR /app
 RUN apk update && \
     apk add --no-cache \
     # build/code
-    build-base bash bash-completion vim jq \
+    coreutils build-base bash bash-completion vim jq \
     # network
     bind-tools iputils tcpdump curl nmap tcpflow iftop net-tools bridge-utils iperf \
     # certificates
