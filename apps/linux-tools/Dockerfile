@@ -22,4 +22,4 @@ RUN apk update && \
 
 ENTRYPOINT ["/usr/bin/catatonit", "--"]
 
-CMD ["/bin/bash"]
+CMD ["tail", "-f", "/dev/null"]
