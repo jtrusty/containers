@@ -20,4 +20,6 @@ RUN apk update && \
     # init system
     catatonit
 
-ENTRYPOINT ["/usr/bin/catatonit", "--", "bash"]
+ENTRYPOINT ["/usr/bin/catatonit", "--"]
+
+CMD ["/bin/bash"]
