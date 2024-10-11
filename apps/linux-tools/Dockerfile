@@ -12,14 +12,10 @@ WORKDIR /app
 RUN apk update && \
     apk add --no-cache \
     # build/code
-    build-base git go bash bash-completion ncurses vim tmux jq \
+    build-base bash bash-completion vim jq \
     # network
-    bind-tools iputils tcpdump curl nmap tcpflow iftop net-tools mtr netcat-openbsd bridge-utils iperf ngrep \
+    bind-tools iputils tcpdump curl nmap tcpflow iftop net-tools bridge-utils iperf \
     # certificates
-    ca-certificates openssl \
-    # processes/io
-    htop atop strace iotop sysstat ltrace ncdu logrotate hdparm pciutils psmisc tree pv \
-    # kubernetes
-    kubectl
+    ca-certificates openssl
 
-ENTRYPOINT bash
+ENTRYPOINT ["/usr/bin/catatonit", "--"]
