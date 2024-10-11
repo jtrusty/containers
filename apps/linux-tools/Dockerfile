@@ -16,6 +16,8 @@ RUN apk update && \
     # network
     bind-tools iputils tcpdump curl nmap tcpflow iftop net-tools bridge-utils iperf \
     # certificates
-    ca-certificates openssl
+    ca-certificates openssl \
+    # init system
+    catatonit
 
-ENTRYPOINT ["/usr/bin/catatonit", "--"]
+ENTRYPOINT ["/usr/bin/catatonit", "--", "bash"]
