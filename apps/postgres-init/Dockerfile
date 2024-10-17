@@ -12,6 +12,7 @@ RUN \
     apk add --no-cache \
         bash \
         ca-certificates \
+        coreutils \
         catatonit \
         postgresql16-client~"${VERSION}"
 
