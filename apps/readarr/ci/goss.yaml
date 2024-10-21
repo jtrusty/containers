@@ -4,7 +4,7 @@ process:
   Readarr:
     running: true
 port:
-  tcp6:8686:
+  tcp6:8787:
     listening: true
 http:
   http://localhost:8787:

@@ -40,7 +40,7 @@ RUN \
         | tar xzf - -C /app/bin --strip-components=1 \
     && printf "UpdateMethod=docker\nBranch=%s\nPackageVersion=%s\nPackageAuthor=[jtrusty](https://github.com/jtrusty)\n" "${READARR__UPDATE__BRANCH}" "${VERSION}" > /app/package_info \
     && chown -R root:root /app && chmod -R 755 /app \
-    && rm -rf /tmp/* /app/bin/readarr.Update
+    && rm -rf /tmp/* /app/bin/Readarr.Update
 
 COPY ./apps/readarr/entrypoint.sh /entrypoint.sh
 
