@@ -4,10 +4,12 @@ ARG TARGETPLATFORM
 ARG VERSION
 ARG CHANNEL
 
+LABEL org.opencontainers.image.source="https://github.com/readarr/readarr"
+
 ENV UMASK="0002" \
     TZ="Etc/UTC"
 
-ENV \
+    ENV \
     COMPlus_EnableDiagnostics="0" \
     READARR__UPDATE__BRANCH="${CHANNEL}"
 
@@ -39,7 +41,6 @@ RUN \
     && mkdir -p /app/bin \
     && curl -fsSL "https://readarr.servarr.com/v1/update/${READARR__UPDATE__BRANCH}/updatefile?version=${VERSION}&os=linuxmusl&runtime=netcore&arch=${ARCH}" \
         | tar xzf - -C /app/bin --strip-components=1 \
-    && rm -rf /app/bin/Readarr.Update \
     && printf "UpdateMethod=docker\nBranch=%s\nPackageVersion=%s\nPackageAuthor=[jtrusty](https://github.com/jtrusty)\n" "${READARR__UPDATE__BRANCH}" "${VERSION}" > /app/package_info \
     && chown -R root:root /app && chmod -R 755 /app \
     && rm -rf /tmp/* /app/bin/Readarr.Update
@@ -51,5 +52,3 @@ WORKDIR /config
 VOLUME ["/config"]
 
 ENTRYPOINT ["/usr/bin/catatonit", "--", "/entrypoint.sh"]
-
-LABEL org.opencontainers.image.source="https://github.com/readarr/readarr"
