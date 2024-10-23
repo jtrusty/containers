@@ -18,7 +18,9 @@ RUN apk update && \
     # certificates
     ca-certificates openssl \
     # init system
-    catatonit
+    catatonit \
+    # database clients
+    postgresql-client mysql-client
 
 ENTRYPOINT ["/usr/bin/catatonit", "--"]
 
