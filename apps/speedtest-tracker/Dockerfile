@@ -79,6 +79,6 @@ RUN \
     /app/www/node_modules \
     /tmp/*
 
-COPY root/ /
+COPY ./apps/speedtest-tracker/root/ /
 
 VOLUME /config
