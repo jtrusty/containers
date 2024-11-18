@@ -48,7 +48,7 @@ RUN \
     
 RUN \
     echo "**** install mylar3 ****" && \
-    curl -fsSL "https://github.com/mylar3/mylar3/archive/${VERSION}.tar.gz" \
+    curl -fsSL "https://github.com/mylar3/mylar3/archive/v${VERSION}.tar.gz" \
         | tar xzf - -C /app/mylar3 --strip-components=1 \
     && cd /app/mylar3 \
     && python3 -m venv /lsiopy \
