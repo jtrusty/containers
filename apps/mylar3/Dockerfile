@@ -36,10 +36,16 @@ RUN \
 
 RUN \
     case "${TARGETPLATFORM}" in \
-        'linux/amd64') export ARCH='x64' ;; \
-        'linux/arm64') export ARCH='arm64' ;; \
-    esac \
-    && mkdir -p /app/bin \
+        'linux/amd64') \
+            export ARCH='amd64'; \
+        ;; \
+        'linux/arm64') \
+            export ARCH='arm64'; \
+        ;; \
+    esac
+    
+RUN \
+    mkdir -p /app/bin \
     && curl -fsSL "https://readarr.servarr.com/v1/update/${READARR__UPDATE__BRANCH}/updatefile?version=${VERSION}&os=linuxmusl&runtime=netcore&arch=${ARCH}" \
         | tar xzf - -C /app/bin --strip-components=1 \
     && printf "UpdateMethod=docker\nBranch=%s\nPackageVersion=%s\nPackageAuthor=[jtrusty](https://github.com/jtrusty)\n" "${READARR__UPDATE__BRANCH}" "${VERSION}" > /app/package_info \
@@ -49,6 +55,7 @@ RUN \
 COPY ./apps/readarr/entrypoint.sh /entrypoint.sh
 
 USER nobody:nogroup
+
 WORKDIR /config
 VOLUME ["/config"]
 
