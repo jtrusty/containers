@@ -30,6 +30,7 @@ RUN \
         jpeg \
         libwebp-tools \
         nodejs \
+        pip \
         python3 \
         zlib
 
