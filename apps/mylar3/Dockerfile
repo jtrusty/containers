@@ -25,6 +25,8 @@ RUN \
     && echo "**** install runtime packages ****" \
     && apk add --no-cache \
         catatonit \
+        coreutils \
+        curl \
         jpeg \
         libwebp-tools \
         nodejs \
@@ -42,7 +44,7 @@ RUN \
     esac
     
 RUN \
-    mkdir -p /app/myarl3
+    mkdir -p /app/mylar3
     
 RUN \
     echo "**** install mylar3 ****" && \
