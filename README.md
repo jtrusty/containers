@@ -104,6 +104,8 @@ Container | Channel | Image
 [lidarr](https://github.com/jtrusty/containers/pkgs/container/lidarr) | master | ghcr.io/jtrusty/lidarr
 [lidarr-develop](https://github.com/jtrusty/containers/pkgs/container/lidarr-develop) | develop | ghcr.io/jtrusty/lidarr-develop
 [linux-tools](https://github.com/jtrusty/containers/pkgs/container/linux-tools) | stable | ghcr.io/jtrusty/linux-tools
+[mylar3](https://github.com/jtrusty/containers/pkgs/container/mylar3) | master | ghcr.io/jtrusty/mylar3
+[mylar3-develop](https://github.com/jtrusty/containers/pkgs/container/mylar3-develop) | develop | ghcr.io/jtrusty/mylar3-develop
 [plex](https://github.com/jtrusty/containers/pkgs/container/plex) | stable | ghcr.io/jtrusty/plex
 [plex-beta](https://github.com/jtrusty/containers/pkgs/container/plex-beta) | beta | ghcr.io/jtrusty/plex-beta
 [postgres-init](https://github.com/jtrusty/containers/pkgs/container/postgres-init) | stable | ghcr.io/jtrusty/postgres-init
