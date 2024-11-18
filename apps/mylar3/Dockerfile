@@ -4,35 +4,32 @@ ARG TARGETPLATFORM
 ARG VERSION
 ARG CHANNEL
 
-LABEL org.opencontainers.image.source="https://github.com/readarr/readarr"
+LABEL org.opencontainers.image.source="https://github.com/mylar3/mylar3"
 
 ENV UMASK="0002" \
     TZ="Etc/UTC"
-
-    ENV \
-    COMPlus_EnableDiagnostics="0" \
-    READARR__UPDATE__BRANCH="${CHANNEL}"
 
 USER root
 WORKDIR /app
 
 #hadolint ignore=DL3018,DL3059
 RUN \
-    apk add --no-cache \
-        bash \
-        ca-certificates \
+    echo "**** install build dependencies ****" \
+    && apk add --no-cache --virtual=build-dependencies \
+        build-base \
+        jpeg-dev \
+        libffi-dev \
+        libwebp-dev \
+        python3-dev \
+        zlib-dev \
+    && echo "**** install runtime packages ****" \
+    && apk add --no-cache \
         catatonit \
-        coreutils \
-        curl \
-        icu-libs \
-        jo \
-        jq \
-        libintl \
-        nano \
-        sqlite-libs \
-        trurl \
-        tzdata \
-        xmlstarlet
+        jpeg \
+        libwebp-tools \
+        nodejs \
+        python3 \
+        zlib
 
 RUN \
     case "${TARGETPLATFORM}" in \
@@ -45,18 +42,32 @@ RUN \
     esac
     
 RUN \
-    mkdir -p /app/bin \
-    && curl -fsSL "https://readarr.servarr.com/v1/update/${READARR__UPDATE__BRANCH}/updatefile?version=${VERSION}&os=linuxmusl&runtime=netcore&arch=${ARCH}" \
-        | tar xzf - -C /app/bin --strip-components=1 \
-    && printf "UpdateMethod=docker\nBranch=%s\nPackageVersion=%s\nPackageAuthor=[jtrusty](https://github.com/jtrusty)\n" "${READARR__UPDATE__BRANCH}" "${VERSION}" > /app/package_info \
-    && chown -R root:root /app && chmod -R 755 /app \
-    && rm -rf /tmp/* /app/bin/Readarr.Update
+    mkdir -p /app/myarl3
+    
+RUN \
+    echo "**** install mylar3 ****" && \
+    curl -fsSL "https://github.com/mylar3/mylar3/archive/${VERSION}.tar.gz" \
+        | tar xzf - -C /app/mylar3 --strip-components=1 \
+    && cd /app/mylar3 \
+    && python3 -m venv /lsiopy \
+    && pip install -U --no-cache-dir \
+        pip \
+        wheel \
+    && pip install --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.19/ -r requirements.txt
 
-COPY ./apps/readarr/entrypoint.sh /entrypoint.sh
+RUN \
+    echo "**** cleanup ****" \
+    && apk del --purge \
+    && build-dependencies \
+    && rm -rf \
+        /root/.cache \
+        /tmp/*
+
+COPY ./apps/mylar3/entrypoint.sh /entrypoint.sh
 
 USER nobody:nogroup
 
-WORKDIR /config
+WORKDIR /config/mylar3
 VOLUME ["/config"]
 
 ENTRYPOINT ["/usr/bin/catatonit", "--", "/entrypoint.sh"]

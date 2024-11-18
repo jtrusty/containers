@@ -2,7 +2,8 @@
 #shellcheck disable=SC2086
 
 exec \
-    /app/bin/Readarr \
-        --nobrowser \
-        --data=/config \
+    python3 /app/mylar/Mylar.py \
+        --nolaunch \
+        --quiet \
+        --datadir=/config/mylar \
         "$@"
