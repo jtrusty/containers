@@ -24,6 +24,7 @@ RUN \
         zlib-dev \
     && echo "**** install runtime packages ****" \
     && apk add --no-cache \
+        bash \
         catatonit \
         coreutils \
         curl \
