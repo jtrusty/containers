@@ -45,23 +45,21 @@ RUN \
     esac
     
 RUN \
-    mkdir -p /app/mylar3
-    
-RUN \
-    echo "**** install mylar3 ****" && \
-    curl -fsSL "https://github.com/mylar3/mylar3/archive/v${VERSION}.tar.gz" \
+    echo "**** install mylar3 ****" \
+    && mkdir -p /app/mylar3 \
+    && curl -fsSL "https://github.com/mylar3/mylar3/archive/v${VERSION}.tar.gz" \
         | tar xzf - -C /app/mylar3 --strip-components=1 \
     && cd /app/mylar3 \
-    && python3 -m venv /lsiopy \
+    && python3 -m venv venv \
+    && . venv/bin/activate \
     && pip install -U --no-cache-dir \
         pip \
         wheel \
-    && pip install --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.19/ -r requirements.txt
+    && pip install --no-cache-dir -r requirements.txt
 
 RUN \
     echo "**** cleanup ****" \
     && apk del --purge \
-    && build-dependencies \
     && rm -rf \
         /root/.cache \
         /tmp/*
