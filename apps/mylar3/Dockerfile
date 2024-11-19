@@ -57,7 +57,7 @@ RUN \
         pip \
         wheel \
     && pip install --no-cache-dir -r requirements.txt
-
+    
 RUN \
     echo "**** cleanup ****" \
     && apk del --purge \
