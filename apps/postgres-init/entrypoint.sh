@@ -2,6 +2,14 @@
 
 # This is most commonly set to the user 'postgres'
 export INIT_POSTGRES_SUPER_USER=${INIT_POSTGRES_SUPER_USER:-postgres}
+
+# Check if INIT_POSTGRES_HOST contains a port
+if [[ "$INIT_POSTGRES_HOST" =~ :([0-9]+)$ ]]; then
+  INIT_POSTGRES_PORT="${BASH_REMATCH[1]}"
+  INIT_POSTGRES_HOST="${INIT_POSTGRES_HOST%:*}"
+fi
+
+# Set the default port if not set
 export INIT_POSTGRES_PORT=${INIT_POSTGRES_PORT:-5432}
 
 if [[ -z "${INIT_POSTGRES_HOST}"       ||
