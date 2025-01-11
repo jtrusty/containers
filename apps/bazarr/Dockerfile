@@ -49,15 +49,18 @@ RUN \
         libffi-dev \
         libpq-dev \
         libxml2-dev \
-        libxslt-dev \
-    && \
+        libxslt-dev
+    
+RUN \
     curl -fsSL -o /tmp/app.zip "https://github.com/morpheus65535/bazarr/releases/download/v${VERSION}/bazarr.zip" \
     && unzip -q /tmp/app.zip -d /app/bin \
     && \
     rm -rf /app/bin/bin \
     && \
-    printf "UpdateMethod=docker\nBranch=master\nPackageVersion=%s\nPackageAuthor=[jtrusty](https://github.com/jtrusty)\n" "${VERSION}" > /app/package_info \
-    && pip install --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.20/ \
+    printf "UpdateMethod=docker\nBranch=master\nPackageVersion=%s\nPackageAuthor=[jtrusty](https://github.com/jtrusty)\n" "${VERSION}" > /app/package_info
+
+RUN \
+    pip install --no-cache-dir --find-links https://wheel-index.linuxserver.io/alpine-3.20/ \
         --requirement /app/bin/requirements.txt \
         --requirement /app/bin/postgres-requirements.txt \
     && chown -R root:root /app && chmod -R 755 /app \
