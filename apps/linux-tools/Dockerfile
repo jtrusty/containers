@@ -13,9 +13,11 @@ RUN apk update && \
     # build/code
     coreutils build-base bash bash-completion vim jq \
     # network
-    bind-tools iputils tcpdump curl nmap tcpflow iftop net-tools bridge-utils iperf \
+    bind-tools iputils tcpdump curl nmap tcpflow iftop net-tools bridge-utils iperf3 busybox-extras \
     # certificates
     ca-certificates openssl \
+    # nfs
+    nfs-utils rpcbind\
     # init system
     catatonit \
     # database clients
