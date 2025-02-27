@@ -8,9 +8,9 @@ RUN \
     apk add --no-cache \
     unbound
 
-COPY ./apps/pihole-unbound/lighttpd-external.conf /etc/lighttpd/external.conf 
-COPY ./apps/pihole-unbound/unbound-pi-hole.conf /etc/unbound/unbound.conf.d/pi-hole.conf
-COPY ./apps/pihole-unbound/99-edns.conf /etc/dnsmasq.d/99-edns.conf
+COPY ./apps/pi-hole-unbound/lighttpd-external.conf /etc/lighttpd/external.conf 
+COPY ./apps/pi-hole-unbound/unbound-pi-hole.conf /etc/unbound/unbound.conf.d/pi-hole.conf
+COPY ./apps/pi-hole-unbound/99-edns.conf /etc/dnsmasq.d/99-edns.conf
 
 RUN mkdir -p /etc/services.d/unbound
 
