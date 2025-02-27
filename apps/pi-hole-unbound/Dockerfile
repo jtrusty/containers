@@ -14,7 +14,7 @@ COPY ./apps/pihole-unbound/99-edns.conf /etc/dnsmasq.d/99-edns.conf
 
 RUN mkdir -p /etc/services.d/unbound
 
-COPY ./apps/pihole-unbound/unbound-run /etc/services.d/unbound/run
+COPY ./apps/pi-hole-unbound/unbound-run /etc/services.d/unbound/run
 
 ENTRYPOINT ./s6-init
 
