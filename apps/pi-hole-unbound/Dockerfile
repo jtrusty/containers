@@ -16,6 +16,6 @@ RUN mkdir -p /etc/services.d/unbound
 
 COPY ./apps/pi-hole-unbound/unbound-run /etc/services.d/unbound/run
 
-ENTRYPOINT ./s6-init
+ENTRYPOINT ["bash", "/start.sh"]
 
 LABEL org.opencontainers.image.source="https://github.com/pi-hole/pi-hole-docker"
