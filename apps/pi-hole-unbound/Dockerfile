@@ -16,6 +16,6 @@ RUN mkdir -p /etc/services.d/unbound
 
 COPY ./apps/pi-hole-unbound/unbound-run /etc/services.d/unbound/run
 
-ENTRYPOINT ["bash", "/start.sh"]
+ENTRYPOINT ["bash", "/usr/bin/pihole-FTL"]
 
 LABEL org.opencontainers.image.source="https://github.com/pi-hole/pi-hole-docker"
