@@ -17,15 +17,15 @@ RUN mkdir -p /etc/services.d/unbound
 COPY ./apps/pi-hole-unbound/resources/unbound-run /etc/services.d/unbound/run
 
 # Create the script to download root hints
-COPY ./apps/pi-hole-unbound/resources/update-root-hints.sh /usr/local/bin/update-root-hints.sh
+COPY ./apps/pi-hole-unbound/resources/update-root-hints.sh /update-root-hints.sh
 
 # Set up the cron job
-RUN echo "0 0 1 */6 * /usr/local/bin/update-root-hints.sh" >> /etc/crontabs/root
+RUN echo "0 0 1 */6 * /update-root-hints.sh" >> /etc/crontabs/root
 
 # Copy the startup script
-COPY ./apps/pi-hole-unbound/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY ./apps/pi-hole-unbound/entrypoint.sh /entrypoint.sh
 
 # Start crond, unbound, and Pi-hole
-CMD ["/usr/local/bin/entrypoint.sh"]
+CMD ["sh", "/entrypoint.sh"]
 
 LABEL org.opencontainers.image.source="https://github.com/pi-hole/pi-hole"
