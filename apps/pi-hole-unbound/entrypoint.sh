@@ -4,4 +4,4 @@
 crond
 
 # Start unbound
-/usr/local/bin/unbound-run &
+unbound -d

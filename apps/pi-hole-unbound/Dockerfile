@@ -12,9 +12,8 @@ COPY ./apps/pi-hole-unbound/resources/lighttpd-external.conf /etc/lighttpd/exter
 COPY ./apps/pi-hole-unbound/resources/unbound-pi-hole.conf /etc/unbound/unbound.conf.d/pi-hole.conf
 COPY ./apps/pi-hole-unbound/resources/99-edns.conf /etc/dnsmasq.d/99-edns.conf
 
-RUN mkdir -p /etc/services.d/unbound
-
-COPY ./apps/pi-hole-unbound/resources/unbound-run /etc/services.d/unbound/run
+# Restart the unbound service
+RUN  service unbound restart
 
 # Create the script to download root hints
 COPY ./apps/pi-hole-unbound/resources/update-root-hints.sh /update-root-hints.sh
