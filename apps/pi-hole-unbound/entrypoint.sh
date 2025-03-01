@@ -4,4 +4,4 @@
 crond
 
 # Start unbound
-unbound -d
+unbound
