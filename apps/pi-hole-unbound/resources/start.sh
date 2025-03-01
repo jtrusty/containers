@@ -42,9 +42,6 @@ start() {
   # Start crond for scheduled scripts (logrotate, pihole flush, gravity update etc)
   start_cron
 
-  # Start unbound for DNS resolution
-  unbound
-  
   # Install the logrotate config file
   install_logrotate
 
@@ -80,7 +77,7 @@ start() {
   while ! grep -q '########## FTL started' /var/log/pihole/FTL.log; do
     sleep 0.5
   done
-  
+
   pihole updatechecker
   local versionsOutput
   versionsOutput=$(pihole -v)
@@ -97,6 +94,10 @@ start() {
   else
     echo "  [i] FTL log output is disabled. Remove the Environment variable TAIL_FTL_LOG, or set it to 1 to enable FTL log output."
   fi
+
+  # Start unbound for DNS resolution
+  echo "  [i] Starting unbound"
+  unbound
 
   # Wait for the capsh process (which spawned FTL) to finish
   wait $CAPSH_PID
